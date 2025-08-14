@@ -3,7 +3,7 @@
 namespace Xakki\ReflectionInfo\DTO;
 
 /**
- * DTO для представления полной информации об объекте.
+ * DTO for representing complete information about an object.
  */
 class ObjectInfo extends ReflectionData
 {
@@ -19,12 +19,16 @@ class ObjectInfo extends ReflectionData
     public $endLine;
     /** @var string|null */
     public $docComment;
-    /** @var boolean */
+    /** @var bool */
     public $isFinal;
-    /** @var boolean */
+    /** @var bool */
     public $isAbstract;
-    /** @var boolean */
+    /** @var bool */
     public $isCloneable;
+    /** @var bool */
+    public $isReadonly;
+    /** @var bool */
+    public $isEnum;
     /** @var string|null */
     public $parent;
     /** @var string[] */
@@ -37,23 +41,31 @@ class ObjectInfo extends ReflectionData
     public $properties;
     /** @var array<string, MethodInfo> */
     public $methods;
+    /** @var AttributeInfo[] */
+    public $attributes;
+    /** @var array<string, scalar> */
+    public $cases;
 
     /**
-     * @param string                    $class
-     * @param string                    $hash
-     * @param string|null               $fileName
-     * @param int|null                  $startLine
-     * @param int|null                  $endLine
-     * @param string|null               $docComment
-     * @param boolean                   $isFinal
-     * @param boolean                   $isAbstract
-     * @param boolean                   $isCloneable
-     * @param string|null               $parent
-     * @param string[]                  $interfaces
-     * @param string[]                  $traits
-     * @param array<string, scalar>     $constants
+     * @param string $class
+     * @param string $hash
+     * @param string|null $fileName
+     * @param int|null $startLine
+     * @param int|null $endLine
+     * @param string|null $docComment
+     * @param bool $isFinal
+     * @param bool $isAbstract
+     * @param bool $isCloneable
+     * @param bool $isReadonly
+     * @param bool $isEnum
+     * @param string|null $parent
+     * @param string[] $interfaces
+     * @param string[] $traits
+     * @param array<string, scalar> $constants
      * @param array<string, PropertyInfo> $properties
-     * @param array<string, MethodInfo>   $methods
+     * @param array<string, MethodInfo> $methods
+     * @param AttributeInfo[] $attributes
+     * @param array<string, scalar> $cases
      */
     public function __construct(
         $class,
@@ -65,12 +77,16 @@ class ObjectInfo extends ReflectionData
         $isFinal,
         $isAbstract,
         $isCloneable,
+        $isReadonly,
+        $isEnum,
         $parent,
         $interfaces,
         $traits,
         $constants,
         $properties,
-        $methods
+        $methods,
+        $attributes,
+        $cases
     ) {
         $this->class = $class;
         $this->hash = $hash;
@@ -81,11 +97,15 @@ class ObjectInfo extends ReflectionData
         $this->isFinal = $isFinal;
         $this->isAbstract = $isAbstract;
         $this->isCloneable = $isCloneable;
+        $this->isReadonly = $isReadonly;
+        $this->isEnum = $isEnum;
         $this->parent = $parent;
         $this->interfaces = $interfaces;
         $this->traits = $traits;
         $this->constants = $constants;
         $this->properties = $properties;
         $this->methods = $methods;
+        $this->attributes = $attributes;
+        $this->cases = $cases;
     }
 }

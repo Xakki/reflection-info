@@ -7,7 +7,7 @@ namespace Xakki\ReflectionInfo\DTO;
  */
 class Visibility
 {
-    const V_PUBLIC = 'public';
-    const V_PROTECTED = 'protected';
-    const V_PRIVATE = 'private';
+    public const V_PUBLIC = 'public';
+    public const V_PROTECTED = 'protected';
+    public const V_PRIVATE = 'private';
 }
